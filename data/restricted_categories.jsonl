@@ -1,0 +1,5 @@
+{"id": "BLOCK-0001", "label": "BLOCK", "category_id": "pathogen_enhancement", "prompt": "<<EXTERNAL: load from a published red-team benchmark at runtime; not stored in this repo. See data/SOURCING.md>>"}
+{"id": "BLOCK-0002", "label": "BLOCK", "category_id": "agent_acquisition", "prompt": "<<EXTERNAL: load from a published red-team benchmark at runtime; not stored in this repo. See data/SOURCING.md>>"}
+{"id": "BLOCK-0003", "label": "BLOCK", "category_id": "toxin_misuse", "prompt": "<<EXTERNAL: load from a published red-team benchmark at runtime; not stored in this repo. See data/SOURCING.md>>"}
+{"id": "BLOCK-0004", "label": "BLOCK", "category_id": "delivery_dissemination", "prompt": "<<EXTERNAL: load from a published red-team benchmark at runtime; not stored in this repo. See data/SOURCING.md>>"}
+{"id": "BLOCK-0005", "label": "BLOCK", "category_id": "evasion_screening", "prompt": "<<EXTERNAL: load from a published red-team benchmark at runtime; not stored in this repo. See data/SOURCING.md>>"}

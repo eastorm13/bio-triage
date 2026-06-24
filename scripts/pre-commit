@@ -1,0 +1,21 @@
+#!/bin/sh
+# Refuse commits that include local-only sensitive files or obvious secrets.
+# Install: cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+staged=$(git diff --cached --name-only)
+
+blocked=$(printf '%s\n' "$staged" | grep -E '(^|/)_block_local\.jsonl$|(^|/)config\.yaml$|^results/.*\.jsonl$')
+if [ -n "$blocked" ]; then
+  echo "COMMIT BLOCKED -- these are local-only and must never be committed:"
+  printf '  %s\n' $blocked
+  echo "Unstage with: git restore --staged <file>"
+  exit 1
+fi
+
+if git diff --cached -U0 \
+   | grep -nEi 'sk-[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16}|(api[_-]?key|secret|password)[[:space:]]*[:=][[:space:]]*["'"'"'][^"'"'"']+' \
+   >/dev/null; then
+  echo "COMMIT BLOCKED -- possible hardcoded credential in staged diff. Review before committing."
+  exit 1
+fi
+exit 0
