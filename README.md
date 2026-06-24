@@ -73,10 +73,7 @@ python -m src.metrics  --in results/run.jsonl --out results/summary.md
 
 ## Results
 
-Drop your `results/summary.md` table here, then write 2–3 paragraphs on where
-the model draws the line, which benign categories it over-refuses, and what that
-implies for safeguard tuning. Be honest about limitations (single model, prompt
-phrasing sensitivity, refusal-classifier error, corpus size).
+
 
 ## Limitations
 
@@ -86,7 +83,7 @@ hand-built and small; one model on one day is not a general claim.
 
 ## License
 
-Source-available, **evaluation only** (see `LICENSE`): the code may be read and
+Source-available, **evaluation only**: the code may be read and
 evaluated but not reused without written permission. This is a deliberate choice,
 not an open-source license. The benign corpus is original; the BLOCK side is not
 distributed.
