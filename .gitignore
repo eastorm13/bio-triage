@@ -1,0 +1,33 @@
+# ---- Project-specific: NEVER commit (safety-critical) ----
+config.yaml
+data/_block_local.jsonl
+results/*.jsonl
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+
+# ---- Tooling / caches ----
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- Env / secrets ----
+.env
+.env.*
+*.key
+
+# ---- OS / editor cruft ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
