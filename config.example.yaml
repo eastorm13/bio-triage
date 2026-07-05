@@ -1,5 +1,5 @@
 # Copy to config.yaml and edit. Never put secrets here; read keys from env.
-model: "your-model-name"
+model: "gpt-5.4-mini"
 allow_path: "data/benign_bio.jsonl"
 # Local, git-ignored file you populate from a published red-team set.
 # Leave unset to run ALLOW-only and report over-refusal alone.
