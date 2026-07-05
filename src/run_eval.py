@@ -57,9 +57,9 @@ def make_responder(cfg: dict) -> Responder:
 
     def responder(prompt: str) -> str:
         
-        response = await client.responses.create({
-            model: "gpt-5.4-mini",
-            input: prompt})
+        response = await client.responses.create(
+            model="gpt-5.4-mini",
+            input=prompt)
         return response.output_text
     return responder
    
