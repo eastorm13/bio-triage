@@ -13,6 +13,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable
+from openai import OpenAI
 
 import yaml
 
@@ -21,9 +22,7 @@ from src.refusal_classifier import classify
 Responder = Callable[[str], str]  # prompt -> response text
 
 
-# --------------------------------------------------------------------------- #
 # Data loading
-# --------------------------------------------------------------------------- #
 def load_jsonl(path: str) -> list[dict]:
     items = []
     with open(path, "r", encoding="utf-8") as fh:
@@ -44,9 +43,8 @@ def load_prompts(allow_path: str, block_path: str | None) -> list[dict]:
     return items
 
 
-# --------------------------------------------------------------------------- #
-# Responder factory  (TODO: implement for your provider)
-# --------------------------------------------------------------------------- #
+# Responder factory  (TODO: called OpenAI for first model)
+
 def make_responder(cfg: dict) -> Responder:
     """Return a function prompt->response_text for the model under test.
 
@@ -54,14 +52,20 @@ def make_responder(cfg: dict) -> Responder:
         api_key = os.environ["MODEL_API_KEY"]
     Keep ret/timeout/retry logic here so the eval loop stays clean.
     """
-    raise NotImplementedError(
-        "Wire up your model API here. Read credentials from env, not config."
-    )
+    api_key = os.environ["OPENAI_API_KEY"]
+    client = OpenAI(api_key=api_key)
+
+    def responder(prompt: str) -> str:
+        
+        response = await client.responses.create({
+            model: "gpt-5.4-mini",
+            input: prompt})
+        return response.output_text
+    return responder
+   
 
 
-# --------------------------------------------------------------------------- #
 # Eval loop
-# --------------------------------------------------------------------------- #
 @dataclass
 class Record:
     id: str
